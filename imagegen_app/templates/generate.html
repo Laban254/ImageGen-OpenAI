@@ -1,0 +1,123 @@
+i<!DOCTYPE html>
+<html>
+<head>
+    <title>ImageGen</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #3498db, #73338f);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            background: #fff;
+            width: 100%; /* Ensure the card takes full width of its container */
+        }
+        .card-header {
+            background-color: #59316c;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .message {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            border-radius: 20px;
+        }
+        .btn-primary {
+            border-radius: 20px;
+            padding: 10px 20px;
+            background-color: #59316c; /* Change button background color */
+            border: none; /* Remove button border */
+        }
+        .btn-primary:hover {
+            background-color: #4a236a; /* Darken button color on hover */
+        }
+        .messages {
+            margin-bottom: 20px;
+        }
+        .message p {
+            margin-bottom: 0;
+        }
+        .message img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .message img:hover {
+            transform: scale(1.05);
+        }
+        /* Custom container class */
+        .custom-container {
+            width: 90%; /* Set container width to 90% */
+            margin: auto; /* Center the container */
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="custom-container"> <!-- Use the custom container class -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">ImageGen</h3>
+            </div>
+            <div class="card-body">
+                <div class="messages">
+                    <div class="message">
+                        <p>Unleash Your Imagination with AI-Generated Images</p>
+                    </div>
+                </div>
+                <form method="get" action="{% url 'generate_image' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="text_input" placeholder="Generate your image here...">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Generate</button>
+                    
+                    
+                    
+                </form>
+                
+
+                {% if image_url %}
+                <div class="messages">
+                    <div class="message">
+                        <p><img src="{{ image_url }}" class="img-fluid"></p>
+                        <a id="download-link" href="#" download="generated_image.png">
+                            <button class="btn btn-primary btn-block">Download Image</button>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            var input = document.querySelector('input[name="text_input"]');
+            if (!input.value) {
+                event.preventDefault();
+                alert('Please enter some text to generate an image.');
+            }
+        });
+        </script>
+</body>
+</html>
