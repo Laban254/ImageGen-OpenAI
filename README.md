@@ -65,9 +65,3 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 
 ImageGen is open-source software licensed under the MIT License.
 
-## Additional Information
-
-This README provides a comprehensive guide to getting started with ImageGen, including installation instructions, usage tips, and information on contributing and licensing. For more details, visit the [GitHub repository](https://github.com/Laban254/ImageGen-OpenAI).
-
-
-
